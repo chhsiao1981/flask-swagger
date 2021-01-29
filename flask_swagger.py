@@ -219,4 +219,7 @@ def swagger(app, prefix=None, process_doc=_sanitize,
             for arg in re.findall('(<([^<>]*:)?([^<>]*)>)', rule):
                 rule = rule.replace(arg[0], '{%s}' % arg[2])
             paths[rule].update(operations)
+
+    if 'openapi' in output:
+        del output['swagger']
     return output
