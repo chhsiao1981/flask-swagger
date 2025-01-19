@@ -2,7 +2,8 @@ import os
 import sys
 import argparse
 import json
-import pkg_resources
+import importlib
+import importlib.metadata
 from flask_swagger import swagger
 
 sys.path.append(os.getcwd())
@@ -21,7 +22,7 @@ args = parser.parse_args()
 
 
 def run():
-    app = pkg_resources.EntryPoint.parse("x=%s" % args.app).resolve()
+    app = importlib.metadata.entry_points(name=args.app)[args.app].load()
 
     # load the base template
     template = None

@@ -1,0 +1,45 @@
+[build-system]
+requires = [
+    'setuptools',
+]
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'flask-swagger'
+version = '0.2.15'
+dependencies = [
+    'PyYAML>=6.0.0',
+    'Flask>=3.0.0',
+]
+authors = [
+    {name = 'Atli Thorbjornsson', email = 'atli@gangverk.is'},
+    {name = 'Chuan-Heng Hsiao', email = 'Chuan-Heng.Hsiao@childrens.harvard.edu'},
+]
+description = "Extract swagger specs from your flask project"
+readme = 'README.md'
+license = {file = "LICENSE"}
+keywords = [
+]
+classifiers = [
+    'Intended Audience :: Developers',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3',
+    'Operating System :: OS Independent',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+]
+
+[project.urls]
+Homepage = "https://github.com/gangverk/flask-swagger"
+# Documentation = ""
+Repository = "https://github.com/gangverk/flask-swagger"
+# "Bug Tracker" = ""
+# Changelog = ""
+
+[project.scripts]
+flaskswagger = 'build_swagger_spec:run'
+
+[tool.setuptools.packages.find]
+include = [
+    'flask_swagger',
+    'build_swagger_spec',
+]
