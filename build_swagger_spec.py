@@ -2,7 +2,8 @@ import os
 import sys
 import argparse
 import json
-import pkg_resources
+import importlib
+import importlib.metadata
 from flask_swagger import swagger
 
 sys.path.append(os.getcwd())
@@ -21,7 +22,15 @@ args = parser.parse_args()
 
 
 def run():
-    app = pkg_resources.EntryPoint.parse("x=%s" % args.app).resolve()
+    entries = importlib.metadata.entry_points(value=args.app)
+    print(f'build_swagger_spec.run: app: {args.app} entries: ({len(entries)}/{entries})')
+    for entry in entries:
+        pass
+
+    the_module = entry.module
+    the_var = entry.value.split(':')[1]
+    mod = importlib.import_module(the_module)
+    app = getattr(mod, the_var)
 
     # load the base template
     template = None
